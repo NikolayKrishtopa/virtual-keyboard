@@ -15,6 +15,7 @@ export default class Key {
     this.keyEl.append(this.keyCharMain);
     this.keyEl.append(this.keyCharShift);
     this.renderLangState();
+    this.setListeners();
     return this.keyEl;
   };
 
@@ -51,5 +52,20 @@ export default class Key {
   changeLang = (lang) => {
     this.lang = lang;
     this.renderLangState();
+  };
+
+  getValues = () => {
+    return [this.chars.main, this.chars.shift];
+  };
+
+  highlight = () => {
+    this.keyEl.classList.add('keyboard__key_highlighted');
+  };
+  removeHighlight = () => {
+    this.keyEl.classList.remove('keyboard__key_highlighted');
+  };
+  setListeners = () => {
+    this.keyEl.addEventListener('mousedown', this.highlight);
+    this.keyEl.addEventListener('mouseup', this.removeHighlight);
   };
 }

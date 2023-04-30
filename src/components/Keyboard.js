@@ -57,10 +57,34 @@ export default class Keyboard {
     this.createLayoutStructure();
     this.renderKeyBoard();
     this.switchBtn.addEventListener('click', this.changeLang);
+    this.setListeners();
   };
   changeLang = () => {
     this.lang =
       this.lang === this.LANGUAGES.ru ? this.LANGUAGES.en : this.LANGUAGES.ru;
     this.keyElements.forEach((key) => key.changeLang(this.lang));
+  };
+
+  setListeners = () => {
+    document.addEventListener('keydown', (e) => {
+      const match = this.keyElements.find((key) =>
+        key.getValues().some((v) => v === e.key)
+      );
+      if (!!match) {
+        match.highlight();
+      } else {
+        console.log('нет такой клавиши');
+      }
+    });
+    document.addEventListener('keyup', (e) => {
+      const match = this.keyElements.find((key) =>
+        key.getValues().some((v) => v === e.key)
+      );
+      if (!!match) {
+        match.removeHighlight();
+      } else {
+        console.log('нет такой клавиши');
+      }
+    });
   };
 }
