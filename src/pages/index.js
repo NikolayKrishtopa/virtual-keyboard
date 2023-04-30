@@ -2,8 +2,8 @@ import KEYBOARD_MATRIX from '../utils/constants';
 import Keyboard from '../components/Keyboard';
 import Key from '../components/Key';
 
-const createKey = (key) => new Key(key).createKey();
+const createKeyInstance = (key, lang) => new Key(key, lang);
 
-const keyboard = new Keyboard(KEYBOARD_MATRIX, createKey);
+const keyboard = new Keyboard(KEYBOARD_MATRIX, createKeyInstance);
 
-// console.log(keyboard.generateKeys());
+keyboard.changeLang();

@@ -1,17 +1,21 @@
 export default class Keyboard {
-  constructor(keys, createKey) {
-    this.createKey = createKey;
+  constructor(keys, createKeyInstance) {
+    this.createKeyInstance = createKeyInstance;
     this.keys = keys;
     this.LANGUAGES = { ru: 'ru', en: 'en' };
-    this.lang = this.LANGUAGES.ru;
+    this.lang = this.LANGUAGES.en;
     this.body = document.querySelector('.root');
+    this.keyElements = [];
     this.initiate();
   }
 
   generateKeys = (keysArr) => {
     const keys = [];
+
     keysArr.forEach((key) => {
-      keys.push(this.createKey(key));
+      const keyInstance = this.createKeyInstance(key, this.lang);
+      keys.push(keyInstance.createKey());
+      this.keyElements.push(keyInstance);
     });
     return keys;
   };
@@ -38,5 +42,10 @@ export default class Keyboard {
     this.keyboard.classList.add('keyboard');
     this.body.append(this.keyboard);
     this.renderKeyBoard();
+  };
+  changeLang = () => {
+    this.lang =
+      this.lang === this.LANGUAGES.ru ? this.LANGUAGES.en : this.LANGUAGES.ru;
+    this.keyElements.forEach((key) => key.changeLang(this.lang));
   };
 }
