@@ -3,7 +3,7 @@ export default class Keyboard {
     this.createKeyInstance = createKeyInstance;
     this.keys = keys;
     this.LANGUAGES = { ru: 'ru', en: 'en' };
-    this.lang = this.LANGUAGES.en;
+    this.lang = localStorage.getItem('lang');
     this.body = document.querySelector('.root');
     this.keyElements = [];
     this.initiate();
@@ -60,8 +60,10 @@ export default class Keyboard {
     this.setListeners();
   };
   changeLang = () => {
+    console.log('I work');
     this.lang =
       this.lang === this.LANGUAGES.ru ? this.LANGUAGES.en : this.LANGUAGES.ru;
+    localStorage.setItem('lang', this.lang);
     this.keyElements.forEach((key) => key.changeLang(this.lang));
   };
 
@@ -71,9 +73,10 @@ export default class Keyboard {
         key.getValues().some((v) => v === e.key)
       );
       if (!!match) {
+        console.log(match.getValues());
         match.highlight();
       } else {
-        console.log('нет такой клавиши');
+        // console.log('нет такой клавиши');
       }
     });
     document.addEventListener('keyup', (e) => {
@@ -81,9 +84,9 @@ export default class Keyboard {
         key.getValues().some((v) => v === e.key)
       );
       if (!!match) {
-        match.removeHighlight();
+        match.stopHighlight();
       } else {
-        console.log('нет такой клавиши');
+        // console.log('нет такой клавиши');
       }
     });
   };

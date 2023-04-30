@@ -61,11 +61,28 @@ export default class Key {
   highlight = () => {
     this.keyEl.classList.add('keyboard__key_highlighted');
   };
-  removeHighlight = () => {
+  stopHighlight = () => {
     this.keyEl.classList.remove('keyboard__key_highlighted');
   };
+  animate = () => {
+    this.keyEl.classList.add('keyboard__key_pressed');
+  };
+  stopAnimate = () => {
+    this.keyEl.classList.remove('keyboard__key_pressed');
+  };
   setListeners = () => {
-    this.keyEl.addEventListener('mousedown', this.highlight);
-    this.keyEl.addEventListener('mouseup', this.removeHighlight);
+    this.keyEl.addEventListener('mousedown', () => {
+      this.highlight();
+      this.animate();
+      const event = new KeyboardEvent('keypress', {
+        key: this.chars.main,
+      });
+      console.log(event);
+      dispatchEvent(event);
+    });
+    this.keyEl.addEventListener('mouseup', () => {
+      this.stopHighlight();
+      this.stopAnimate();
+    });
   };
 }

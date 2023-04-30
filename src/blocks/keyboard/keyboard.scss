@@ -30,9 +30,13 @@
   cursor: pointer;
   width: $btn-size-s;
   height: $btn-size-s;
+  transition: transform 0.1s ease;
 }
 .keyboard__key_highlighted {
   background-color: $accent;
+}
+.keyboard__key_pressed {
+  transform: scale(0.9);
 }
 .keyboard__key-main {
   font-size: 20px;
