@@ -8,22 +8,35 @@ export default class Keyboard {
     this.initiate();
   }
 
-  generateKeys = () => {
+  generateKeys = (keysArr) => {
     const keys = [];
-    this.keys.row1.forEach((key) => {
+    keysArr.forEach((key) => {
       keys.push(this.createKey(key));
     });
     return keys;
   };
 
-  renderKeys = (container) => {
-    this.generateKeys().forEach((key) => container.append(key));
+  renderKeys = (keysArr, container) => {
+    this.generateKeys(keysArr).forEach((key) => container.append(key));
+    return container;
+  };
+
+  createRow = () => {
+    const row = document.createElement('div');
+    row.classList.add('keyboard__row');
+    return row;
+  };
+
+  renderKeyBoard = () => {
+    for (let row in this.keys) {
+      this.keyboard.append(this.renderKeys(this.keys[row], this.createRow()));
+    }
   };
 
   initiate = () => {
     this.keyboard = document.createElement('div');
     this.keyboard.classList.add('keyboard');
     this.body.append(this.keyboard);
-    this.renderKeys(this.keyboard);
+    this.renderKeyBoard();
   };
 }
