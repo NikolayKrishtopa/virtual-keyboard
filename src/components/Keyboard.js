@@ -38,10 +38,21 @@ export default class Keyboard {
   };
 
   initiate = () => {
+    this.page = document.createElement('div');
+    this.page.classList.add('page');
+    this.input = document.createElement('textarea');
+    this.input.classList.add('text-field');
+    this.switchBtn = document.createElement('button');
+    this.switchBtn.classList.add('button');
+    this.switchBtn.id = 'switchLangBtn';
     this.keyboard = document.createElement('div');
     this.keyboard.classList.add('keyboard');
-    this.body.append(this.keyboard);
+    this.body.append(this.page);
+    this.page.append(this.input);
+    this.page.append(this.switchBtn);
+    this.page.append(this.keyboard);
     this.renderKeyBoard();
+    this.switchBtn.addEventListener('click', this.changeLang);
   };
   changeLang = () => {
     this.lang =

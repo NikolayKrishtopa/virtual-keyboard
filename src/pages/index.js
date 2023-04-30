@@ -1,3 +1,5 @@
+import './index.scss';
+
 import KEYBOARD_MATRIX from '../utils/constants';
 import Keyboard from '../components/Keyboard';
 import Key from '../components/Key';
