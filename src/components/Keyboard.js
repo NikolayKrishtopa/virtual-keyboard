@@ -25,16 +25,12 @@ export default class Keyboard {
     return container;
   };
 
-  createRow = () => {
-    const row = document.createElement('div');
-    row.classList.add('keyboard__row');
-    return row;
-  };
-
   renderKeyBoard = () => {
-    for (let row in this.keys) {
-      this.keyboard.append(this.renderKeys(this.keys[row], this.createRow()));
-    }
+    Object.keys(this.keys).forEach((k) => {
+      const row = document.createElement('div');
+      row.classList.add('keyboard__row');
+      this.keyboard.append(this.renderKeys(this.keys[k], row));
+    });
   };
 
   createLayoutStructure = () => {
@@ -53,37 +49,32 @@ export default class Keyboard {
     this.page.append(this.switchBtn);
     this.page.append(this.keyboard);
   };
+
   initiate = () => {
     this.createLayoutStructure();
     this.renderKeyBoard();
     this.switchBtn.addEventListener('click', this.changeLang);
     this.setListeners();
   };
+
   changeLang = () => {
-    console.log('I work');
-    this.lang =
-      this.lang === this.LANGUAGES.ru ? this.LANGUAGES.en : this.LANGUAGES.ru;
+    this.lang = this.lang === this.LANGUAGES.ru ? this.LANGUAGES.en : this.LANGUAGES.ru;
     localStorage.setItem('lang', this.lang);
     this.keyElements.forEach((key) => key.changeLang(this.lang));
   };
 
   setListeners = () => {
     document.addEventListener('keydown', (e) => {
-      const match = this.keyElements.find((key) =>
-        key.getValues().some((v) => v === e.key)
-      );
-      if (!!match) {
-        console.log(match.getValues());
+      const match = this.keyElements.find((key) => key.getValues().some((v) => v === e.key));
+      if (match) {
         match.highlight();
       } else {
         // console.log('нет такой клавиши');
       }
     });
     document.addEventListener('keyup', (e) => {
-      const match = this.keyElements.find((key) =>
-        key.getValues().some((v) => v === e.key)
-      );
-      if (!!match) {
+      const match = this.keyElements.find((key) => key.getValues().some((v) => v === e.key));
+      if (match) {
         match.stopHighlight();
       } else {
         // console.log('нет такой клавиши');

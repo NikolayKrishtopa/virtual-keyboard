@@ -20,33 +20,37 @@ export default class Key {
   };
 
   renderLangState = () => {
-    this.chars = this.key.en
-      ? this.lang === 'ru'
+    if (this.key.en) {
+      this.chars = this.lang === 'ru'
         ? this.key.ru
-        : this.key.en
-      : this.key;
-    this.keyCharMain.textContent =
-      this.chars.main === 'Control'
-        ? 'Ctrl'
-        : this.chars.main === 'Meta'
-        ? 'Win'
-        : this.chars.main === 'ArrowUp'
-        ? 'Up'
-        : this.chars.main === 'ArrowLeft'
-        ? 'Lft'
-        : this.chars.main === 'ArrowRight'
-        ? 'Rght'
-        : this.chars.main === 'ArrowDown'
-        ? 'Dwn'
-        : this.chars.main === 'Delete'
-        ? 'Del'
-        : this.chars.main.length === 1
-        ? this.chars.main.toUpperCase()
-        : this.chars.main;
-    this.keyCharShift.textContent =
-      this.chars?.shift !== this.chars?.main.toUpperCase()
-        ? this.chars?.shift
-        : '';
+        : this.key.en;
+    } else {
+      this.chars = this.key;
+    }
+
+    if (this.chars.main === 'Control') {
+      this.keyCharMain.textContent = 'Ctrl';
+    } else if (this.chars.main === 'Meta') {
+      this.keyCharMain.textContent = 'Win';
+    } else if (this.chars.main === 'ArrowUp') {
+      this.keyCharMain.textContent = 'Up';
+    } else if (this.chars.main === 'ArrowLeft') {
+      this.keyCharMain.textContent = 'Lft';
+    } else if (this.chars.main === 'ArrowRight') {
+      this.keyCharMain.textContent = 'Rght';
+    } else if (this.chars.main === 'ArrowDown') {
+      this.keyCharMain.textContent = 'Dwn';
+    } else if (this.chars.main === 'Delete') {
+      this.keyCharMain.textContent = 'Del';
+    } else if (this.chars.main.length === 1) {
+      this.keyCharMain.textContent = this.chars.main.toUpperCase();
+    } else {
+      this.keyCharMain.textContent = this.chars.main;
+    }
+
+    this.keyCharShift.textContent = this.chars?.shift !== this.chars?.main.toUpperCase()
+      ? this.chars?.shift
+      : '';
   };
 
   changeLang = (lang) => {
@@ -54,22 +58,24 @@ export default class Key {
     this.renderLangState();
   };
 
-  getValues = () => {
-    return [this.chars.main, this.chars.shift];
-  };
+  getValues = () => [this.chars.main, this.chars.shift];
 
   highlight = () => {
     this.keyEl.classList.add('keyboard__key_highlighted');
   };
+
   stopHighlight = () => {
     this.keyEl.classList.remove('keyboard__key_highlighted');
   };
+
   animate = () => {
     this.keyEl.classList.add('keyboard__key_pressed');
   };
+
   stopAnimate = () => {
     this.keyEl.classList.remove('keyboard__key_pressed');
   };
+
   setListeners = () => {
     this.keyEl.addEventListener('mousedown', () => {
       this.highlight();
@@ -77,7 +83,7 @@ export default class Key {
       const event = new KeyboardEvent('keypress', {
         key: this.chars.main,
       });
-      console.log(event);
+      // console.log(event);
       dispatchEvent(event);
     });
     this.keyEl.addEventListener('mouseup', () => {

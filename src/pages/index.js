@@ -7,3 +7,5 @@ import Key from '../components/Key';
 const createKeyInstance = (key, lang) => new Key(key, lang);
 
 const keyboard = new Keyboard(KEYBOARD_MATRIX, createKeyInstance);
+
+export default keyboard;
