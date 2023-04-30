@@ -72,7 +72,7 @@ const KEYBOARD = {
   ],
   row5: [
     { size: 'l', main: 'Control' },
-    { size: 's', main: 'ContextMenu' },
+    { size: 's', main: 'Meta' },
     { size: 's', main: 'Alt' },
     { size: 'xxxl', main: ' ' },
     { size: 's', main: 'Alt' },

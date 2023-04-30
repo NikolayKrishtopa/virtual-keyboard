@@ -1,0 +1,11 @@
+@import '../../styles/globalVars.scss';
+.text-field {
+  margin: 0;
+  padding: 10px;
+  border-radius: calc($btn-size-s * 0.1);
+  background-color: $primary-dark;
+  width: 100%;
+  min-height: 200px;
+  box-sizing: border-box;
+  color: $white;
+}

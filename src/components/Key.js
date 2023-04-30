@@ -6,12 +6,12 @@ export default class Key {
 
   createKey = () => {
     this.keyEl = document.createElement('button');
-    this.keyEl.classList.add('key');
-    this.keyEl.classList.add(`key_size_${this.key.size}`);
+    this.keyEl.classList.add('keyboard__key');
+    this.keyEl.classList.add(`keyboard__key_size_${this.key.size}`);
     this.keyCharMain = document.createElement('p');
-    this.keyCharMain.classList.add('key__main');
+    this.keyCharMain.classList.add('keyboard__key-main');
     this.keyCharShift = document.createElement('p');
-    this.keyCharShift.classList.add('key__shift');
+    this.keyCharShift.classList.add('keyboard__key-shift');
     this.keyEl.append(this.keyCharMain);
     this.keyEl.append(this.keyCharShift);
     this.renderLangState();
@@ -24,8 +24,28 @@ export default class Key {
         ? this.key.ru
         : this.key.en
       : this.key;
-    this.keyCharMain.textContent = this.chars.main;
-    this.keyCharShift.textContent = this.chars?.shift || '';
+    this.keyCharMain.textContent =
+      this.chars.main === 'Control'
+        ? 'Ctrl'
+        : this.chars.main === 'Meta'
+        ? 'Win'
+        : this.chars.main === 'ArrowUp'
+        ? 'Up'
+        : this.chars.main === 'ArrowLeft'
+        ? 'Lft'
+        : this.chars.main === 'ArrowRight'
+        ? 'Rght'
+        : this.chars.main === 'ArrowDown'
+        ? 'Dwn'
+        : this.chars.main === 'Delete'
+        ? 'Del'
+        : this.chars.main.length === 1
+        ? this.chars.main.toUpperCase()
+        : this.chars.main;
+    this.keyCharShift.textContent =
+      this.chars?.shift !== this.chars?.main.toUpperCase()
+        ? this.chars?.shift
+        : '';
   };
 
   changeLang = (lang) => {

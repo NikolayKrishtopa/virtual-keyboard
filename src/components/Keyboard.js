@@ -44,6 +44,7 @@ export default class Keyboard {
     this.input.classList.add('text-field');
     this.switchBtn = document.createElement('button');
     this.switchBtn.classList.add('button');
+    this.switchBtn.textContent = 'change language';
     this.switchBtn.id = 'switchLangBtn';
     this.keyboard = document.createElement('div');
     this.keyboard.classList.add('keyboard');
