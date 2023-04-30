@@ -83,10 +83,10 @@ export default class Key {
       const event = new KeyboardEvent('keypress', {
         key: this.chars.main,
       });
-      // console.log(event);
+      console.log(event);
       dispatchEvent(event);
     });
-    this.keyEl.addEventListener('mouseup', () => {
+    window.addEventListener('mouseup', () => {
       this.stopHighlight();
       this.stopAnimate();
     });
