@@ -37,7 +37,7 @@ export default class Keyboard {
     }
   };
 
-  initiate = () => {
+  createLayoutStructure = () => {
     this.page = document.createElement('div');
     this.page.classList.add('page');
     this.input = document.createElement('textarea');
@@ -52,6 +52,9 @@ export default class Keyboard {
     this.page.append(this.input);
     this.page.append(this.switchBtn);
     this.page.append(this.keyboard);
+  };
+  initiate = () => {
+    this.createLayoutStructure();
     this.renderKeyBoard();
     this.switchBtn.addEventListener('click', this.changeLang);
   };

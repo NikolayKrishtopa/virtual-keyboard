@@ -13,6 +13,7 @@
 .keyboard__row {
   width: 100%;
   display: flex;
+  justify-content: space-between;
   gap: $keyGap;
 }
 .keyboard__key {
@@ -26,6 +27,7 @@
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
+  cursor: pointer;
   width: $btn-size-s;
   height: $btn-size-s;
 }
@@ -40,7 +42,7 @@
   position: absolute;
   top: 5px;
   left: 5px;
-  font-size: 14px;
+  font-size: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
