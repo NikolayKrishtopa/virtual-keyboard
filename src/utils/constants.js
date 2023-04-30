@@ -52,7 +52,7 @@ const KEYBOARD = {
     { size: 's', en: { shift: 'L', main: 'l' }, ru: { shift: 'Щ', main: 'щ' } },
     { size: 's', en: { shift: ':', main: ';' }, ru: { shift: 'З', main: 'з' } },
     { size: 's', en: { shift: '"', main: "'" }, ru: { shift: 'Х', main: 'х' } },
-    { size: 'l', main: Enter },
+    { size: 'l', main: 'Enter' },
   ],
   row4: [
     { size: 'xl', main: 'Shift' },
@@ -82,3 +82,5 @@ const KEYBOARD = {
     { size: 's', main: 'ArrowRight' },
   ],
 };
+
+export default KEYBOARD;
