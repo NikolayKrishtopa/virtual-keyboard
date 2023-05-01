@@ -143,6 +143,8 @@ export default class Keyboard {
         this.input.value = `${this.input.value.substring(0, this.input.selectionStart)
         }\n${
           this.input.value.substring(this.input.selectionEnd, this.input.value.length)}`;
+        this.input.selectionStart = memo + 1;
+        this.input.selectionEnd = memo + 1;
         break;
       default:
         if (!val.key.charKey) return;
