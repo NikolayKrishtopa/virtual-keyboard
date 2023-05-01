@@ -37,7 +37,6 @@ export default class Keyboard {
 
   getInput = (() => {
     this.input = document.querySelector('textarea');
-    console.log(this.input.value);
   });
 
   createLayoutStructure = () => {
@@ -89,6 +88,7 @@ export default class Keyboard {
     } else {
       // console.log('нет такой клавиши');
     }
+    console.log(this.input.selectionStart);
   };
 
   focusInput = () => {
@@ -115,16 +115,21 @@ export default class Keyboard {
     }
   };
 
+  // **events dispatched from Key and observer is here**
   dispatchInputVirtual = (val) => {
-    console.log(this.input.selectionStart);
+    const memo = this.input.selectionStart;
     switch (val.chars.main) {
       case 'Backspace':
         this.input.value = this.input.value.substring(0, this.input.selectionStart - 1)
           + this.input.value.substring(this.input.selectionEnd, this.input.value.length);
+        this.input.selectionStart = memo !== 0 ? memo - 1 : memo;
+        this.input.selectionEnd = memo !== 0 ? memo - 1 : memo;
         break;
       case 'Delete':
         this.input.value = this.input.value.substring(0, this.input.selectionStart)
           + this.input.value.substring(this.input.selectionEnd + 1, this.input.value.length);
+        this.input.selectionStart = memo;
+        this.input.selectionEnd = memo;
         break;
       case 'Shift':
         this.toggleShift();
@@ -138,6 +143,7 @@ export default class Keyboard {
       case 'ArrowLeft':
         this.input.selectionStart -= 1;
         this.input.selectionEnd -= 1;
+        console.log(this.input.selectionStart);
         break;
       case 'Enter':
         this.input.value = `${this.input.value.substring(0, this.input.selectionStart)
@@ -152,15 +158,21 @@ export default class Keyboard {
           + add
             + this.input.value.substring(this.input.selectionEnd, this.input.value.length);
           this.toggleShift();
+          this.input.selectionStart = memo + 1;
+          this.input.selectionEnd = memo + 1;
         } else if (this.capsPressed) {
           const add = val.chars.shift ? val.chars.shift : val.chars.main;
           this.input.value = this.input.value.substring(0, this.input.selectionStart)
           + add
             + this.input.value.substring(this.input.selectionEnd, this.input.value.length);
+          this.input.selectionStart = memo + 1;
+          this.input.selectionEnd = memo + 1;
         } else {
           this.input.value = this.input.value.substring(0, this.input.selectionStart)
           + val.chars.main
             + this.input.value.substring(this.input.selectionEnd, this.input.value.length);
+          this.input.selectionStart = memo + 1;
+          this.input.selectionEnd = memo + 1;
         }
         break;
     }
@@ -171,6 +183,7 @@ export default class Keyboard {
     document.addEventListener('keyup', (e) => {
       this.handleKeyUp(e);
     });
+    // **switch all the visual effects off for all the keys**
     window.addEventListener('mouseup', () => {
       this.keyElements.forEach((e) => {
         e.stopHighlight();
