@@ -7,5 +7,6 @@ A vanilla JS challenge. The virtual keyboard depeloped with native JS (OOP). The
 - **git clone ...** clone the repo into your PC
 - **npm i** to install all the required dependencies
 - npm run dev to launch the app runtime
-
+<div align="center">
 <img src="./src/images/virtual-keyboard.png" alt="screenshot of the app" width="500"/>
+</div>
