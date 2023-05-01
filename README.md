@@ -8,4 +8,4 @@ A vanilla JS challenge. The virtual keyboard depeloped with native JS (OOP). The
 - **npm i** to install all the required dependencies
 - npm run dev to launch the app runtime
 
-<img src="./src/img/virtual-keyboard.png" alt="screenshot of the app" width="500"/>
+<img src="./src/images/virtual-keyboard.png" alt="screenshot of the app" width="500"/>
