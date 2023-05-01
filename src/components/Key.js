@@ -1,5 +1,6 @@
 export default class Key {
-  constructor(key, lang) {
+  constructor(key, lang, dispatchInputVirt) {
+    this.dispatchInputVirt = dispatchInputVirt;
     this.key = key;
     this.lang = lang;
   }
@@ -19,7 +20,7 @@ export default class Key {
     return this.keyEl;
   };
 
-  renderLangState = () => {
+  setCharset = () => {
     if (this.key.en) {
       this.chars = this.lang === 'ru'
         ? this.key.ru
@@ -27,6 +28,10 @@ export default class Key {
     } else {
       this.chars = this.key;
     }
+  };
+
+  renderLangState = () => {
+    this.setCharset();
 
     if (this.chars.main === 'Control') {
       this.keyCharMain.textContent = 'Ctrl';
@@ -60,6 +65,8 @@ export default class Key {
 
   getValues = () => [this.chars.main, this.chars.shift];
 
+  getContext = () => this;
+
   highlight = () => {
     this.keyEl.classList.add('keyboard__key_highlighted');
   };
@@ -76,19 +83,25 @@ export default class Key {
     this.keyEl.classList.remove('keyboard__key_pressed');
   };
 
+  hold = () => {
+    this.keyCharMain.classList.add('keyboard__key-main_held');
+  };
+
+  leave = () => {
+    this.keyCharMain.classList.remove('keyboard__key-main_held');
+  };
+
   setListeners = () => {
     this.keyEl.addEventListener('mousedown', () => {
       this.highlight();
       this.animate();
-      const event = new KeyboardEvent('keypress', {
-        key: this.chars.main,
-      });
-      console.log(event);
-      // console.log(document.body.dispatchEvent(event));
+      this.dispatchInputVirt(this.getContext());
+
+      // const event = new KeyboardEvent('keypress', {
+      //   key: this.chars.main,
+      //   bubbles: true,
+      // });
+      // document.dispatchEvent(event);
     });
-    // window.addEventListener('mouseup', () => {
-    //   this.stopHighlight();
-    //   this.stopAnimate();
-    // });
   };
 }

@@ -44,6 +44,20 @@
   margin: 0;
   color: $white;
 }
+.keyboard__key-main_held{
+  text-decoration: underline;
+  &::after{
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    right: 10px;
+    top: 10px;
+    background-color: $accent;
+    border-radius: 50%;
+    z-index: 2;
+  }
+}
 .keyboard__key-shift {
   margin: 0;
   position: absolute;
@@ -55,8 +69,7 @@
   align-items: center;
   color: $white;
 }
-.keyboard__key_size_s {
-}
+
 .keyboard__key_size_m {
   width: $btn-size-m;
 }
