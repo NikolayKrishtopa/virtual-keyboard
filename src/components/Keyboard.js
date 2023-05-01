@@ -80,14 +80,14 @@ export default class Keyboard {
         // console.log('нет такой клавиши');
       }
     });
-    window.addEventListener('mouseup', (evt) => {
+    window.addEventListener('mouseup', () => {
       this.keyElements.forEach((e) => {
         e.stopHighlight();
         e.stopAnimate();
       });
-      if (evt.target.closest('.keyboard')) {
-        this.input.focus();
-      }
+    });
+    this.keyboard.addEventListener('mouseup', () => {
+      this.input.focus();
     });
   };
 }
