@@ -84,11 +84,11 @@ export default class Key {
         key: this.chars.main,
       });
       console.log(event);
-      dispatchEvent(event);
+      // console.log(document.body.dispatchEvent(event));
     });
-    window.addEventListener('mouseup', () => {
-      this.stopHighlight();
-      this.stopAnimate();
-    });
+    // window.addEventListener('mouseup', () => {
+    //   this.stopHighlight();
+    //   this.stopAnimate();
+    // });
   };
 }
