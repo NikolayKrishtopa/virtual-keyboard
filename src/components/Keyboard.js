@@ -75,8 +75,6 @@ export default class Keyboard {
     if (match) {
       match.highlight();
       match.animate();
-    } else {
-      // console.log('нет такой клавиши');
     }
   };
 
@@ -85,10 +83,7 @@ export default class Keyboard {
     if (match) {
       match.stopHighlight();
       match.stopAnimate();
-    } else {
-      // console.log('нет такой клавиши');
     }
-    console.log(this.input.selectionStart);
   };
 
   focusInput = () => {
@@ -143,7 +138,6 @@ export default class Keyboard {
       case 'ArrowLeft':
         this.input.selectionStart -= 1;
         this.input.selectionEnd -= 1;
-        console.log(this.input.selectionStart);
         break;
       case 'Enter':
         this.input.value = `${this.input.value.substring(0, this.input.selectionStart)
