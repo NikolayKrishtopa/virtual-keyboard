@@ -95,7 +95,10 @@ export default class Keyboard {
     const key = this.keyElements.find((e) => e.getValues()[0] === 'Shift');
     if (this.shiftPressed) {
       key.hold();
-      this.keyElements.forEach((e) => e.renderRegistrState(true));
+      this.keyElements.forEach((e) => e.renderRegistrState('shift'));
+    } else if (this.capsPressed) {
+      key.leave();
+      this.keyElements.forEach((e) => e.renderRegistrState('caps'));
     } else {
       key.leave();
       this.keyElements.forEach((e) => e.renderRegistrState());
@@ -107,7 +110,7 @@ export default class Keyboard {
     const key = this.keyElements.find((e) => e.getValues()[0] === 'CapsLock');
     if (this.capsPressed) {
       key.hold();
-      this.keyElements.forEach((e) => e.renderRegistrState(true));
+      this.keyElements.forEach((e) => e.renderRegistrState('caps'));
     } else {
       key.leave();
       this.keyElements.forEach((e) => e.renderRegistrState());

@@ -30,7 +30,7 @@ export default class Key {
     }
   };
 
-  renderRegistrState = (upper) => {
+  renderRegistrState = (mode) => {
     this.setCharset();
 
     if (this.chars.main === 'Control') {
@@ -48,7 +48,7 @@ export default class Key {
     } else if (this.chars.main === 'Delete') {
       this.keyCharMain.textContent = 'Del';
     } else if (this.chars.main.length === 1) {
-      this.keyCharMain.textContent = upper ? this.chars.main.toUpperCase() : this.chars.main;
+      this.keyCharMain.textContent = mode === 'caps' || mode === 'shift' ? this.chars.main.toUpperCase() : this.chars.main;
     } else {
       this.keyCharMain.textContent = this.chars.main;
     }
