@@ -135,6 +135,14 @@ export default class Keyboard {
       case 'ArrowRight':
         this.input.selectionStart += 1;
         break;
+      case 'Tab':
+        this.input.selectionStart += 1;
+        this.input.value = `${this.input.value.substring(0, this.input.selectionStart)
+        }    ${
+          this.input.value.substring(this.input.selectionEnd, this.input.value.length)}`;
+        this.input.selectionStart = memo + 5;
+        this.input.selectionEnd = memo + 5;
+        break;
       case 'Alt':
         if (this.shiftPressed) {
           this.changeLang();
