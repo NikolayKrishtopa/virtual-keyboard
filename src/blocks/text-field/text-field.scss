@@ -10,4 +10,16 @@
   color: $white;
   font-size: 18px;
   outline: none;
+  @media screen and (max-width: $breakpoint-extra-big) {
+    padding: 5px;
+    font-size: 14px;
+  }
+  @media screen and (max-width: $breakpoint-tablet) {
+    min-height: 150px;
+    font-size: 16px;
+  }
+  @media screen and (max-width: $breakpoint-mobile) {
+    min-height: 100px;
+    font-size: 14px;
+  }
 }

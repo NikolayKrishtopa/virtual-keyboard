@@ -9,12 +9,35 @@
   padding: $keyGap;
   box-sizing: border-box;
   border-radius: calc(0.15 * $btn-size-s);
+  @media screen and (max-width: $breakpoint-extra-big) {
+   gap: calc(0.7 * $keyGap);
+   border-radius: calc(0.11 * $btn-size-s);
+  }
+  @media screen and (max-width: $breakpoint-tablet) {
+    gap: calc(0.5 * $keyGap);
+    border-radius: calc(0.08 * $btn-size-s);
+  }
+  @media screen and (max-width: $breakpoint-mobile) {
+    gap: calc(0.35 * $keyGap);
+    border-radius: calc(0.05 * $btn-size-s);
+    padding: calc($keyGap * 0.5);
+  }
+
 }
 .keyboard__row {
   width: 100%;
   display: flex;
   justify-content: space-between;
   gap: $keyGap;
+  @media screen and (max-width: $breakpoint-extra-big) {
+   gap: calc(0.7 * $keyGap);
+  }
+  @media screen and (max-width: $breakpoint-tablet) {
+    gap: calc(0.5 * $keyGap);
+  }
+  @media screen and (max-width: $breakpoint-mobile) {
+    gap: calc(0.35 * $keyGap);
+  }
 }
 .keyboard__key {
   background-color: #2b2a2a;
@@ -31,6 +54,21 @@
   width: $btn-size-s;
   height: $btn-size-s;
   transition: transform 0.1s ease;
+  @media screen and (max-width: $breakpoint-extra-big) {
+    width: calc(0.7 * $btn-size-s);
+    border-radius: calc(0.12 * $btn-size-s);
+    height: calc(0.7 * $btn-size-s);
+  }
+  @media screen and (max-width: $breakpoint-tablet) {
+    width: calc(0.5 * $btn-size-s);
+    border-radius: calc(0.08 * $btn-size-s);
+    height: calc(0.5 * $btn-size-s);
+  }
+  @media screen and (max-width: $breakpoint-mobile) {
+    width: calc(0.35 * $btn-size-s);
+    border-radius: calc(0.05 * $btn-size-s);
+    height: calc(0.35 * $btn-size-s);
+  }
 }
 .keyboard__key_highlighted {
   background-color: $accent;
@@ -43,6 +81,15 @@
   line-height: 1;
   margin: 0;
   color: $white;
+  @media screen and (max-width: $breakpoint-extra-big) {
+    font-size: 14px;
+  }
+  @media screen and (max-width: $breakpoint-extra-big) {
+    font-size: 12px;
+  }
+  @media screen and (max-width: $breakpoint-mobile) {
+    font-size: 7px;
+  }
 }
 .keyboard__key-main_held{
   text-decoration: underline;
@@ -56,6 +103,24 @@
     background-color: $accent;
     border-radius: 50%;
     z-index: 2;
+    @media screen and (max-width: $breakpoint-extra-big) {
+      width: 7px;
+      height: 7px;
+      right: 7px;
+      top: 7px;
+  }
+    @media screen and (max-width: $breakpoint-tablet) {
+      width: 5px;
+      height: 5px;
+      right: 5px;
+      top: 5px;
+  }
+    @media screen and (max-width: $breakpoint-mobile) {
+      width: 4px;
+      height: 4px;
+      right: 4px;
+      top: 4px;
+  }
   }
 }
 .keyboard__key-shift {
@@ -68,17 +133,63 @@
   justify-content: center;
   align-items: center;
   color: $white;
+  @media screen and (max-width: $breakpoint-extra-big) {
+    font-size: 10px;
+      top: 4px;
+      left: 4px;
+  }
+  @media screen and (max-width: $breakpoint-tablet) {
+    font-size: 8px;
+      top: 3px;
+      left: 3px;
+  }
 }
 
 .keyboard__key_size_m {
   width: $btn-size-m;
+  @media screen and (max-width: $breakpoint-extra-big) {
+    width: calc(0.7 * $btn-size-m);
+  }
+  @media screen and (max-width: $breakpoint-extra-big) {
+    width: calc(0.5 * $btn-size-m);
+  }
+  @media screen and (max-width: $breakpoint-mobile) {
+    width: calc(0.35 * $btn-size-m);
+  }
 }
 .keyboard__key_size_l {
   width: $btn-size-l;
+  @media screen and (max-width: $breakpoint-extra-big) {
+    width: calc(0.7 * $btn-size-l);
+  }
+  @media screen and (max-width: $breakpoint-extra-big) {
+    width: calc(0.5 * $btn-size-l);
+  }
+  @media screen and (max-width: $breakpoint-mobile) {
+    width: calc(0.35 * $btn-size-l);
+  }
 }
 .keyboard__key_size_xl {
   width: $btn-size-xl;
+  @media screen and (max-width: $breakpoint-extra-big) {
+    width: calc(0.7 * $btn-size-xl);
+  }
+  @media screen and (max-width: $breakpoint-extra-big) {
+    width: calc(0.5 * $btn-size-xl);
+  }
+  @media screen and (max-width: $breakpoint-mobile) {
+    width: calc(0.35 * $btn-size-xl);
+  }
 }
 .keyboard__key_size_xxxl {
   width: $btn-size-xxxl;
+  @media screen and (max-width: $breakpoint-extra-big) {
+    width: calc(0.7 * $btn-size-xxxl);
+  }
+  @media screen and (max-width: $breakpoint-extra-big) {
+    width: calc(0.5 * $btn-size-xxxl);
+  }
+  @media screen and (max-width: $breakpoint-mobile) {
+    width: calc(0.35 * $btn-size-xxxl);
+  }
 }
