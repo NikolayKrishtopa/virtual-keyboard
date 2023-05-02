@@ -38,23 +38,31 @@ export default class Key {
     } else if (this.chars.main === 'Meta') {
       this.keyCharMain.textContent = 'Win';
     } else if (this.chars.main === 'ArrowUp') {
-      this.keyCharMain.textContent = 'Up';
+      this.keyCharMain.textContent = '↑';
     } else if (this.chars.main === 'ArrowLeft') {
-      this.keyCharMain.textContent = 'Lft';
+      this.keyCharMain.textContent = '←';
     } else if (this.chars.main === 'ArrowRight') {
-      this.keyCharMain.textContent = 'Rght';
+      this.keyCharMain.textContent = '→';
     } else if (this.chars.main === 'ArrowDown') {
-      this.keyCharMain.textContent = 'Dwn';
+      this.keyCharMain.textContent = '↓';
     } else if (this.chars.main === 'Delete') {
       this.keyCharMain.textContent = 'Del';
     } else if (this.chars.main.length === 1) {
-      this.keyCharMain.textContent = mode === 'caps' || mode === 'shift' ? this.chars.main.toUpperCase() : this.chars.main;
+      if (mode === 'shift') {
+        this.keyCharMain.textContent = this.chars.shift;
+      } else {
+        this.keyCharMain.textContent = mode === 'caps' || mode === 'shift' ? this.chars.main.toUpperCase() : this.chars.main;
+      }
     } else {
       this.keyCharMain.textContent = this.chars.main;
     }
-    this.keyCharShift.textContent = this.chars?.shift !== this.chars?.main.toUpperCase()
-      ? this.chars?.shift
-      : '';
+    if (this.chars?.shift !== this.chars?.main.toUpperCase()) {
+      if (mode === 'shift') {
+        this.keyCharShift.textContent = this.chars?.shift ? this.chars?.main : '';
+      } else { this.keyCharShift.textContent = this.chars?.shift; }
+    } else {
+      this.keyCharShift.textContent = '';
+    }
   };
 
   changeLang = (lang) => {

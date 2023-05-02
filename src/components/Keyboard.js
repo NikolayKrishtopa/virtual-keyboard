@@ -71,13 +71,15 @@ export default class Keyboard {
   };
 
   handleKeyDown = (e) => {
-    if (e.key !== 'shift') e.preventDefault();
+    if (!['Delete', 'Backspace', 'Shift', 'Control', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) e.preventDefault();
     const match = this.keyElements.find((key) => (
       key.getAllPossibleValues().some((v) => v === e.key)));
     if (match) {
       match.highlight();
       match.animate();
-      match.dispatchInputVirt(match.getContext());
+      if (!['Delete', 'Backspace', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+        match.dispatchInputVirt(match.getContext());
+      }
     }
   };
 
@@ -130,21 +132,25 @@ export default class Keyboard {
           + this.input.value.substring(this.input.selectionEnd, this.input.value.length);
         this.input.selectionStart = memo !== 0 ? memo - 1 : memo;
         this.input.selectionEnd = memo !== 0 ? memo - 1 : memo;
+        if (this.shiftPressed) this.toggleShift();
         break;
       case 'Delete':
         this.input.value = this.input.value.substring(0, this.input.selectionStart)
           + this.input.value.substring(this.input.selectionEnd + 1, this.input.value.length);
         this.input.selectionStart = memo;
         this.input.selectionEnd = memo;
+        if (this.shiftPressed) this.toggleShift();
         break;
       case 'Shift':
         this.toggleShift();
         break;
       case 'CapsLock':
         this.toggleCaps();
+        if (this.shiftPressed) this.toggleShift();
         break;
       case 'ArrowRight':
         this.input.selectionStart += 1;
+        if (this.shiftPressed) this.toggleShift();
         break;
       case 'Tab':
         this.input.selectionStart += 1;
@@ -153,22 +159,26 @@ export default class Keyboard {
           this.input.value.substring(this.input.selectionEnd, this.input.value.length)}`;
         this.input.selectionStart = memo + 5;
         this.input.selectionEnd = memo + 5;
+        if (this.shiftPressed) this.toggleShift();
         break;
       case 'Alt':
         if (this.shiftPressed) {
           this.changeLang();
           this.toggleShift();
         }
+        if (this.shiftPressed) this.toggleShift();
         break;
       case 'Control':
         if (this.shiftPressed) {
           this.changeLang();
           this.toggleShift();
         }
+        if (this.shiftPressed) this.toggleShift();
         break;
       case 'ArrowLeft':
         this.input.selectionStart -= 1;
         this.input.selectionEnd -= 1;
+        if (this.shiftPressed) this.toggleShift();
         break;
       case 'Enter':
         this.input.value = `${this.input.value.substring(0, this.input.selectionStart)
@@ -176,6 +186,7 @@ export default class Keyboard {
           this.input.value.substring(this.input.selectionEnd, this.input.value.length)}`;
         this.input.selectionStart = memo + 1;
         this.input.selectionEnd = memo + 1;
+        if (this.shiftPressed) this.toggleShift();
         break;
       default:
         if (!val.key.charKey) return;
