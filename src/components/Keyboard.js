@@ -60,7 +60,7 @@ export default class Keyboard {
   initiate = () => {
     this.createLayoutStructure();
     this.renderKeyBoard();
-    this.switchBtn.addEventListener('click', this.changeLang);
+    // this.switchBtn.addEventListener('click', this.changeLang);
     this.setListeners();
   };
 
