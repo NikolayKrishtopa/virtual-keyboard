@@ -199,7 +199,7 @@ export default class Keyboard {
           this.input.selectionStart = memo + 1;
           this.input.selectionEnd = memo + 1;
         } else if (this.capsPressed) {
-          const add = val.chars.shift ? val.chars.shift : val.chars.main;
+          const add = val.chars.main;
           this.input.value = this.input.value.substring(0, this.input.selectionStart)
           + add
             + this.input.value.substring(this.input.selectionEnd, this.input.value.length);
