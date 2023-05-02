@@ -15,7 +15,7 @@ export default class Key {
     this.keyCharShift.classList.add('keyboard__key-shift');
     this.keyEl.append(this.keyCharMain);
     this.keyEl.append(this.keyCharShift);
-    this.renderLangState();
+    this.renderRegistrState();
     this.setListeners();
     return this.keyEl;
   };
@@ -30,7 +30,7 @@ export default class Key {
     }
   };
 
-  renderLangState = () => {
+  renderRegistrState = (upper) => {
     this.setCharset();
 
     if (this.chars.main === 'Control') {
@@ -48,11 +48,10 @@ export default class Key {
     } else if (this.chars.main === 'Delete') {
       this.keyCharMain.textContent = 'Del';
     } else if (this.chars.main.length === 1) {
-      this.keyCharMain.textContent = this.chars.main.toUpperCase();
+      this.keyCharMain.textContent = upper ? this.chars.main.toUpperCase() : this.chars.main;
     } else {
       this.keyCharMain.textContent = this.chars.main;
     }
-
     this.keyCharShift.textContent = this.chars?.shift !== this.chars?.main.toUpperCase()
       ? this.chars?.shift
       : '';
@@ -60,7 +59,7 @@ export default class Key {
 
   changeLang = (lang) => {
     this.lang = lang;
-    this.renderLangState();
+    this.renderRegistrState();
   };
 
   getValues = () => [this.chars.main, this.chars.shift];
