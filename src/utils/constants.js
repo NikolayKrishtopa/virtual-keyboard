@@ -7,22 +7,22 @@ const KEYBOARD = {
       charKey: true, size: 's', shift: '!', main: '1',
     },
     {
-      charKey: true, size: 's', shift: '@', main: '2',
+      charKey: true, size: 's', en: { shift: '@', main: '2' }, ru: { shift: '"', main: '2' },
     },
     {
-      charKey: true, size: 's', shift: '#', main: '3',
+      charKey: true, size: 's', en: { shift: '#', main: '3' }, ru: { shift: '№', main: '3' },
     },
     {
-      charKey: true, size: 's', shift: '$', main: '4',
+      charKey: true, size: 's', en: { shift: '$', main: '4' }, ru: { shift: ';', main: '4' },
     },
     {
       charKey: true, size: 's', shift: '%', main: '5',
     },
     {
-      charKey: true, size: 's', shift: '^', main: '6',
+      charKey: true, size: 's', en: { shift: '^', main: '6' }, ru: { shift: ':', main: '6' },
     },
     {
-      charKey: true, size: 's', shift: '&', main: '7',
+      charKey: true, size: 's', en: { shift: '&', main: '7' }, ru: { shift: '?', main: '7' },
     },
     {
       charKey: true, size: 's', shift: '*', main: '8',

@@ -64,6 +64,13 @@ export default class Key {
 
   getValues = () => [this.chars.main, this.chars.shift];
 
+  getAllPossibleValues = () => {
+    if (this.key.en) {
+      return [this.key.ru.main, this.key.ru.shift, this.key.en.main, this.key.en.shift];
+    }
+    return [this.key.main, this.key.shift];
+  };
+
   getContext = () => this;
 
   highlight = () => {

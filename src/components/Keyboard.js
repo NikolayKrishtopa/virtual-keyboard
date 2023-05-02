@@ -71,15 +71,19 @@ export default class Keyboard {
   };
 
   handleKeyDown = (e) => {
-    const match = this.keyElements.find((key) => key.getValues().some((v) => v === e.key));
+    if (e.key !== 'shift') e.preventDefault();
+    const match = this.keyElements.find((key) => (
+      key.getAllPossibleValues().some((v) => v === e.key)));
     if (match) {
       match.highlight();
       match.animate();
+      match.dispatchInputVirt(match.getContext());
     }
   };
 
   handleKeyUp = (e) => {
-    const match = this.keyElements.find((key) => key.getValues().some((v) => v === e.key));
+    const match = this.keyElements.find((key) => (
+      key.getAllPossibleValues().some((v) => v === e.key)));
     if (match) {
       match.stopHighlight();
       match.stopAnimate();
@@ -202,8 +206,8 @@ export default class Keyboard {
   };
 
   setListeners = () => {
-    document.addEventListener('keydown', this.handleKeyDown);
-    document.addEventListener('keyup', (e) => {
+    this.input.addEventListener('keydown', this.handleKeyDown);
+    this.input.addEventListener('keyup', (e) => {
       this.handleKeyUp(e);
     });
     // **switch all the visual effects off for all the keys**
