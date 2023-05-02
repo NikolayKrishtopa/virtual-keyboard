@@ -1,0 +1,20 @@
+$primary-dark: #545454;
+$keyboard-bknd: #6b6b6b;
+$page-bknd: #0e0b28;
+$white: #fff;
+$black: #000;
+$accent: rgb(217, 156, 42);
+
+$breakpoint-extra-big: 1050px;
+$breakpoint-extra-m: 767px;
+$breakpoint-tablet: 750px;
+$breakpoint-mobile-big: 550px;
+$breakpoint-mobile: 480px;
+
+$keyGap: 10px;
+
+$btn-size-s: 55px;
+$btn-size-m: calc($btn-size-s * 1.2);
+$btn-size-l: calc(2 * $btn-size-s + $keyGap);
+$btn-size-xl: calc(2 * $btn-size-m + $keyGap);
+$btn-size-xxxl: calc($btn-size-s * 6);
