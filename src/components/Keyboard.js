@@ -47,7 +47,7 @@ export default class Keyboard {
     this.input.id = 'textField';
     this.switchBtn = document.createElement('button');
     this.switchBtn.classList.add('button');
-    this.switchBtn.textContent = 'switch language';
+    this.switchBtn.textContent = 'Press Ctrl + Shift or Alt + Shift to switch language';
     this.switchBtn.id = 'switchLangBtn';
     this.keyboard = document.createElement('div');
     this.keyboard.classList.add('keyboard');
@@ -134,6 +134,18 @@ export default class Keyboard {
         break;
       case 'ArrowRight':
         this.input.selectionStart += 1;
+        break;
+      case 'Alt':
+        if (this.shiftPressed) {
+          this.changeLang();
+          this.toggleShift();
+        }
+        break;
+      case 'Control':
+        if (this.shiftPressed) {
+          this.changeLang();
+          this.toggleShift();
+        }
         break;
       case 'ArrowLeft':
         this.input.selectionStart -= 1;
